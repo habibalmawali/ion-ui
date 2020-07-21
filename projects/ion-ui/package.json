@@ -1,0 +1,12 @@
+{
+  "name": "ion-ui",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^10.0.4",
+    "@angular/core": "^10.0.4",
+    "@ionic/angular": "^5.2.3"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}

@@ -6,5 +6,18 @@
 */
 {
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./projects/ion-ui/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ion-ui/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ion-ui-test/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/ion-ui-test/tsconfig.spec.json"
+    }
+]
 }

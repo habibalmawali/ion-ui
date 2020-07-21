@@ -2,5 +2,167 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "ion-ui": {
+      "projectType": "library",
+      "root": "projects/ion-ui",
+      "sourceRoot": "projects/ion-ui/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ion-ui/tsconfig.lib.json",
+            "project": "projects/ion-ui/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ion-ui/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ion-ui/src/test.ts",
+            "tsConfig": "projects/ion-ui/tsconfig.spec.json",
+            "karmaConfig": "projects/ion-ui/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ion-ui/tsconfig.lib.json",
+              "projects/ion-ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ion-ui-test": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/ion-ui-test",
+      "sourceRoot": "projects/ion-ui-test/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ion-ui-test",
+            "index": "projects/ion-ui-test/src/index.html",
+            "main": "projects/ion-ui-test/src/main.ts",
+            "polyfills": "projects/ion-ui-test/src/polyfills.ts",
+            "tsConfig": "projects/ion-ui-test/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/ion-ui-test/src/favicon.ico",
+              "projects/ion-ui-test/src/assets"
+            ],
+            "styles": [
+              "projects/ion-ui-test/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ion-ui-test/src/environments/environment.ts",
+                  "with": "projects/ion-ui-test/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ion-ui-test:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ion-ui-test:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ion-ui-test:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ion-ui-test/src/test.ts",
+            "polyfills": "projects/ion-ui-test/src/polyfills.ts",
+            "tsConfig": "projects/ion-ui-test/tsconfig.spec.json",
+            "karmaConfig": "projects/ion-ui-test/karma.conf.js",
+            "assets": [
+              "projects/ion-ui-test/src/favicon.ico",
+              "projects/ion-ui-test/src/assets"
+            ],
+            "styles": [
+              "projects/ion-ui-test/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ion-ui-test/tsconfig.app.json",
+              "projects/ion-ui-test/tsconfig.spec.json",
+              "projects/ion-ui-test/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ion-ui-test/e2e/protractor.conf.js",
+            "devServerTarget": "ion-ui-test:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ion-ui-test:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "ion-ui"
 }
