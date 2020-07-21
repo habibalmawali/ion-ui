@@ -1,6 +1,6 @@
 {
-  "name": "ion-ui",
-  "version": "0.0.1",
+  "name": "@habibalmawali/ion-ui",
+  "version": "1.0.0",
   "peerDependencies": {
     "@angular/common": "^10.0.4",
     "@angular/core": "^10.0.4",
@@ -8,5 +8,8 @@
   },
   "dependencies": {
     "tslib": "^2.0.0"
+  },
+  "publishConfig": { 
+    "registry": "https://npm.pkg.github.com/" 
   }
 }

@@ -12,7 +12,7 @@ import { IonicModule } from '@ionic/angular';
   imports: [
     HttpClientModule,
     CommonModule,
-    IonicModule.forRoot({mode: "md"})
+    IonicModule,
   ],
   exports: [IonUiComponent]
 })
